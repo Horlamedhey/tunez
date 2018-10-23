@@ -112,7 +112,7 @@
    ======================================================================*/
 
     function xsCountDown() {
-        var endTIme = new Date('2018-8-17');
+        var endTIme = new Date('2018-11-04');
         var nowTime = new Date();
 
         var timeLeft = endTIme - nowTime;
@@ -161,20 +161,18 @@
         var myChart = new Chart(ctx, {
             type: 'doughnut',
             data: {
-                labels: ["Community", "Reserved Fund", "Advisor Team", "Sold Globaly"],
+                labels: ["Airdrop/Bounty", "Marketing and Team", "Sale Drop ICO"],
                 datasets: [{
-                    data: [10, 8, 12, 70],
+                    data: [12.92, 3.75, 83.33],
                     backgroundColor: [
                         '#ae31d9',
                         '#f18b7e',
                         '#5db7fa',
-                        '#26d7e5'
                     ],
                     borderColor: [
                         '#02014c',
                         '#02014c',
                         '#56a7f9',
-                        '#56a7f9'
                     ],
                     borderWidth: 0,
                 }]
@@ -194,9 +192,9 @@
         var myChartTwo = new Chart(ctxTwo, {
             type: 'doughnut',
             data: {
-                labels: ["Community", "Reserved Fund", "Advisor Team", "Sold Globaly"],
+                labels: ["Operational Cost", "Legal Operation", "Product Development", "Marketing and Lisiting"],
                 datasets: [{
-                    data: [10, 8, 12, 70],
+                    data: [5, 5, 40, 50],
                     backgroundColor: [
                         '#c13cbd',
                         '#4a8df8',
@@ -220,6 +218,7 @@
         });
     }
     $().timelinr();
+
     /*==========================================================
            Side Offset cart menu open
         ======================================================================*/
@@ -236,11 +235,93 @@
             $('.cart-group').removeClass('isActive');
         });
     }
-    if ($('.navSidebar-button').length > 0) {
-        $('.navSidebar-button').on('click', function (e) {
+    if ($('.navSidebar-button-reg').length > 0) {
+        $('.navSidebar-button-reg').on('click', function (e) {
+            $('#formbtn').html('register');
+            $('#referraldiv').css('display', 'block');
+            $('#regtext').css('display', 'block');
             e.preventDefault();
             e.stopPropagation();
             $('.info-group').addClass('isActive');
+        });
+    }
+    if ($('.navSidebar-button-log').length > 0) {
+        $('.navSidebar-button-log').on('click', function (e) {
+            $('#formbtn').html('login');
+            $('#referraldiv').css('display', 'none');
+            $('#regtext').css('display', 'none');
+            e.preventDefault();
+            e.stopPropagation();
+            $('.info-group').addClass('isActive');
+        });
+    }
+    if ($('#formbtn').length > 0) {
+        $('#formbtn').on('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            if ($('#formbtn').html('register')) {
+                $('#noemail').css('display', 'none');
+                $('#takenemail').css('display', 'none');
+                $('#nopass').css('display', 'none');
+                $('#noref').css('display', 'none');
+                let email = $('#email').val();
+                let password = $('#password').val();
+                let referrer = $('#referral').val();
+                if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+                    $('#noemail').css('display', 'none');
+                } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+                    $('#noemail').css('display', 'block');
+                }
+                if (password == '') {
+                    $('#nopass').css('display', 'block');
+                } else if (!password === '') {
+                    $('#nopass').css('display', 'none');
+                }
+                if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) && password !== '') {
+                    $('#formbtn').html('Please Wait...');
+                    $.post('register.php', {
+                            email: email,
+                            password: password,
+                            referrerCode: referrer
+                        },
+                        function (response) {
+                            if (/taken/.test(response)) {
+                                $('#alert').css('display', 'block');
+                                $('#formbtn').html('register');
+                                $('#alertbox').html(`<strong>${response}</strong> Please try a different one.`);
+                                setTimeout(() => {
+                                    $('#alert').css('display', 'none');
+                                }, 2000);
+                            } else if (/Unable/.test(response)) {
+                                $('#alert').css('display', 'block');
+                                $('#formbtn').html('register');
+                                $('#alertbox').html(`<strong>${response}</strong> Please try again.`);
+                                setTimeout(() => {
+                                    $('#alert').css('display', 'none');
+                                }, 2000);
+                            } else if (/code/.test(response)) {
+                                $('#formbtn').html('register');
+                                $('#noref').css('display', 'block');
+                            } else if (/Success/.test(response)) {
+                                $('#alert').css('display', 'block');
+                                $('#alertbox').html('<strong>Successfully Registered!</strong>');
+                                setTimeout(() => {
+                                    $('#alert').css('display', 'none');
+                                    window.open(`confirmation.php?email=${email}`);
+                                    $('#formbtn').html('register');
+                                    $('.info-group').removeClass('isActive');
+                                }, 1000);
+                            } else {
+                                $('#formbtn').html('register');
+                                $('#alert').css('display', 'block');
+                                $('#alertbox').html('<strong>Unable to register new user!</strong> Please try again.');
+                                setTimeout(() => {
+                                    $('#alert').css('display', 'none');
+                                }, 1000);
+                            }
+                        });
+                }
+            }
         });
     }
     if ($('.close-side-widget').length > 0) {

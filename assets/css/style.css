@@ -58,8 +58,12 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
   background: #666;
 }
 
+::selection {
+  background: rgb(231, 133, 4);
+}
+
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 26px;
@@ -130,7 +134,7 @@ p {
 h1, h2, h3, h4, h5, h6 {
   color: #fff;
   margin: 0 0 17px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 h1 {
@@ -285,7 +289,6 @@ h6 {
 }
 
 .column-title {
-  font-size: 36px;
   line-height: 48px;
   letter-spacing: -0.9px;
   margin-bottom: 22px;
@@ -308,7 +311,7 @@ h6 {
   text-transform: uppercase;
   color: #444;
   font-weight: 700;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   margin-bottom: 18px;
   line-height: 14px;
   display: block;
@@ -317,7 +320,7 @@ h6 {
 .feature-title {
   font-size: 20px;
   font-weight: 500;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
 }
 
 .xs-single-title {
@@ -457,11 +460,11 @@ h6 {
 }
 
 .nav-menu>li:hover>a {
-  color: rgb(120, 120, 120)!important;
+  color: rgb(120, 120, 120) !important;
 }
 
 .header-right>li:hover>a {
-  color: rgb(120, 120, 120)!important;
+  color: rgb(120, 120, 120) !important;
 }
 
 .xs-menu .megamenu-panel-row [class*="col-"] {
@@ -819,8 +822,8 @@ h6 {
 }
 
 .banner-content .banner-title {
-  font-size: 70px;
-  font-family: "Open Sans", sans-serif;
+  /* font-size: 70px; */
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 600;
   letter-spacing: -1.75px;
   margin-bottom: 40px;
@@ -1034,7 +1037,7 @@ h6 {
 
 .hidden-title {
   font-size: 200px;
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   color: rgba(0, 0, 0, 0.051);
   font-weight: 700;
   line-height: 0.13;
@@ -1116,11 +1119,14 @@ h6 {
   padding: 0 39px;
 }
 
-.main-fetured-item .single-feaured-item img {
-  margin-bottom: 40px;
+.main-fetured-item .single-feaured-item i {
+  /* font-weight: 100; */
+  font-size: 90px;
+  color: #ffffff;
 }
 
 .main-fetured-item .single-feaured-item .feature-title {
+  margin-top: 40px;
   margin-bottom: 17px;
 }
 
@@ -1325,7 +1331,7 @@ h6 {
 }
 
 .xs-count-down .xs-single-title {
-  font-family: "Roboto", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   font-weight: 400;
   margin-bottom: 28px;
   text-align: center;
@@ -1629,7 +1635,7 @@ h6 {
 }
 
 .chart-label li:nth-child(1) img {
-  left: -169px;
+  left: -189px;
   top: 15px;
   width: 80%;
 }
@@ -1637,6 +1643,12 @@ h6 {
 .chart-label li:nth-child(2) img {
   left: -125px;
   top: 10px;
+}
+
+.chart-label2 li:nth-child(2) img {
+  left: -170px;
+  top: 10px;
+  width: 70%;
 }
 
 .chart-label li:nth-child(3) img {
@@ -1649,6 +1661,12 @@ h6 {
   left: -133px;
   top: -10px;
   width: 61%;
+}
+
+.chart-label2 li:nth-child(4) img {
+  left: -223px;
+  top: 10px;
+  width: 130%;
 }
 
 .chart-gap .xs-single-title {
@@ -2056,7 +2074,7 @@ h6 {
 .report-table table td {
   border: none;
   font-size: 12px;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
   color: #fff;
   padding: 4px 20px;
 }
@@ -2391,6 +2409,7 @@ footer {
 
 .blog-and-footer-area {
   background-image: radial-gradient(50% 50%, #fd8f22 0%, #fd8f13 37%, #ff8f00 87%);
+  padding-top: 120px;
 }
 
 .blog-and-social-area {
@@ -2624,9 +2643,9 @@ footer {
   background-image: linear-gradient(322deg, #c80b0a 0%, #f14443 100%);
 }
 
-.single-social-list.medium {
+.single-social-list.telegram {
   background-color: #0b0b89;
-  background-image: linear-gradient(322deg, #038c59 0%, #31fb8d 100%);
+  background-image: linear-gradient(322deg, #34ACE0 0%, rgb(102, 154, 177) 100%);
 }
 
 /*------------------- social-list-v3 ----------------*/
@@ -2665,6 +2684,10 @@ footer {
   border-top: 1px solid rgba(255, 255, 255, 0.15);
   border-bottom: 1px solid rgba(255, 255, 255, 0.15);
   z-index: 1;
+}
+
+footer p {
+  color: #fff;
 }
 
 .footer-widget .footer-logo {
@@ -3113,8 +3136,8 @@ footer {
 .wrap-area-v2 .token-chart-item {
   background: transparent;
   -webkit-box-shadow: 0px 0px 100px 0px rgba(104, 209, 251, 0.3);
-  box-shadow: 0px 0px 100px 0px rgba(104, 209, 251, 0.3);
-  border-color: #1746d3;
+  box-shadow: 0px 0px 100px 0px rgba(228, 177, 82, 0.3);
+  border-color: #ff8f00;
 }
 
 .wrap-area-v2 .xs-count-down::before {
@@ -3464,7 +3487,7 @@ a.cencel-preloader {
 
 #issues li p {
   font-size: 18px;
-  color: #ffffff;
+  color: #333;
   margin: 10px 20px;
   line-height: 22px;
   text-align: center;

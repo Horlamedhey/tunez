@@ -1,0 +1,13 @@
+{
+    "name": "root/html",
+    "type": "project",
+    "require": {
+        "josantonius/session": "^1.1",
+        "sergeytsalkov/meekrodb": "^2.3",
+        "phpmailer/phpmailer": "*"
+    },
+    "authors": [{
+        "name": "variable",
+        "email": "Horlasco34@gmail.com"
+    }]
+}
