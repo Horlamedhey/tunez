@@ -17,4 +17,6 @@
   $('#stats4').click(() => {
     $('#username4').slideToggle();
   });
+
+
 })(jQuery);

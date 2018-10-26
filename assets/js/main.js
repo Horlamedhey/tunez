@@ -89,30 +89,16 @@
 
 
     /*==========================================================
-     select lagnuage on popup
+     modal
      ======================================================================*/
 
-    if ($('.xs-modal-popup').length > 0) {
-        $('.xs-modal-popup').magnificPopup({
-            type: 'inline',
-            fixedContentPos: false,
-            fixedBgPos: true,
-            overflowY: 'auto',
-            closeBtnInside: false,
-            mainClass: 'mfp-fade',
-            callbacks: {
-                beforeOpen: function () {
-                    this.st.mainClass = "my-mfp-slide-bottom xs-promo-popup";
-                }
-            }
-        });
-    }
+
     /*==========================================================
      counter down
    ======================================================================*/
 
     function xsCountDown() {
-        var endTIme = new Date('2018-11-04');
+        var endTIme = new Date('2018-11-07');
         var nowTime = new Date();
 
         var timeLeft = endTIme - nowTime;
@@ -222,23 +208,12 @@
     /*==========================================================
            Side Offset cart menu open
         ======================================================================*/
-    if ($('.offset-side-bar').length > 0) {
-        $('.offset-side-bar').on('click', function (e) {
-            e.preventDefault();
-            e.stopPropagation();
-            $('.cart-group').addClass('isActive');
-        });
-    }
-    if ($('.close-side-widget').length > 0) {
-        $('.close-side-widget').on('click', function (e) {
-            e.preventDefault();
-            $('.cart-group').removeClass('isActive');
-        });
-    }
     if ($('.navSidebar-button-reg').length > 0) {
         $('.navSidebar-button-reg').on('click', function (e) {
-            $('#formbtn').html('register');
+            $('#register').html('register');
             $('#referraldiv').css('display', 'block');
+            $('#login').css('display', 'none');
+            $('#register').css('display', 'block');
             $('#regtext').css('display', 'block');
             e.preventDefault();
             e.stopPropagation();
@@ -247,83 +222,139 @@
     }
     if ($('.navSidebar-button-log').length > 0) {
         $('.navSidebar-button-log').on('click', function (e) {
-            $('#formbtn').html('login');
+            $('#register').html('login');
             $('#referraldiv').css('display', 'none');
+            $('#register').css('display', 'none');
+            $('#login').css('display', 'block');
             $('#regtext').css('display', 'none');
             e.preventDefault();
             e.stopPropagation();
             $('.info-group').addClass('isActive');
         });
     }
-    if ($('#formbtn').length > 0) {
-        $('#formbtn').on('click', (e) => {
+
+    if ($('#register').length > 0) {
+        $('#register').on('click', (e) => {
             e.preventDefault();
             e.stopPropagation();
-            if ($('#formbtn').html('register')) {
+            $('#noemail').css('display', 'none');
+            $('#takenemail').css('display', 'none');
+            $('#nopass').css('display', 'none');
+            $('#noref').css('display', 'none');
+            let email = $('#email').val();
+            let password = $('#password').val();
+            let referrer = $('#referral').val();
+            if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
                 $('#noemail').css('display', 'none');
-                $('#takenemail').css('display', 'none');
+            } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+                $('#noemail').css('display', 'block');
+            }
+            if (password == '') {
+                $('#nopass').css('display', 'block');
+            } else if (!password === '') {
                 $('#nopass').css('display', 'none');
-                $('#noref').css('display', 'none');
-                let email = $('#email').val();
-                let password = $('#password').val();
-                let referrer = $('#referral').val();
-                if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
-                    $('#noemail').css('display', 'none');
-                } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
-                    $('#noemail').css('display', 'block');
-                }
-                if (password == '') {
-                    $('#nopass').css('display', 'block');
-                } else if (!password === '') {
-                    $('#nopass').css('display', 'none');
-                }
-                if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) && password !== '') {
-                    $('#formbtn').html('Please Wait...');
-                    $.post('register.php', {
-                            email: email,
-                            password: password,
-                            referrerCode: referrer
-                        },
-                        function (response) {
-                            if (/taken/.test(response)) {
-                                $('#alert').css('display', 'block');
-                                $('#formbtn').html('register');
-                                $('#alertbox').html(`<strong>${response}</strong> Please try a different one.`);
-                                setTimeout(() => {
-                                    $('#alert').css('display', 'none');
-                                }, 2000);
-                            } else if (/Unable/.test(response)) {
-                                $('#alert').css('display', 'block');
-                                $('#formbtn').html('register');
-                                $('#alertbox').html(`<strong>${response}</strong> Please try again.`);
-                                setTimeout(() => {
-                                    $('#alert').css('display', 'none');
-                                }, 2000);
-                            } else if (/code/.test(response)) {
-                                $('#formbtn').html('register');
-                                $('#noref').css('display', 'block');
-                            } else if (/Success/.test(response)) {
-                                $('#alert').css('display', 'block');
-                                $('#alertbox').html('<strong>Successfully Registered!</strong>');
-                                setTimeout(() => {
-                                    $('#alert').css('display', 'none');
-                                    window.open(`confirmation.php?email=${email}`);
-                                    $('#formbtn').html('register');
-                                    $('.info-group').removeClass('isActive');
-                                }, 1000);
-                            } else {
-                                $('#formbtn').html('register');
-                                $('#alert').css('display', 'block');
-                                $('#alertbox').html('<strong>Unable to register new user!</strong> Please try again.');
-                                setTimeout(() => {
-                                    $('#alert').css('display', 'none');
-                                }, 1000);
-                            }
-                        });
-                }
+            }
+            if (/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email) && password !== '') {
+                $('#register').html('Please Wait...');
+                $.post('register.php', {
+                        email: email,
+                        password: password,
+                        referrerCode: referrer
+                    },
+                    function (response) {
+                        if (/taken/.test(response)) {
+                            $('#alert').css('display', 'block');
+                            $('#register').html('register');
+                            $('#alertbox').html(`<strong>${response}</strong> Please try a different one.`);
+                            setTimeout(() => {
+                                $('#alert').css('display', 'none');
+                            }, 2000);
+                        } else if (/Unable/.test(response)) {
+                            $('#alert').css('display', 'block');
+                            $('#register').html('register');
+                            $('#alertbox').html(`<strong>${response}</strong> Please try again.`);
+                            setTimeout(() => {
+                                $('#alert').css('display', 'none');
+                            }, 2000);
+                        } else if (/code/.test(response)) {
+                            $('#register').html('register');
+                            $('#noref').css('display', 'block');
+                        } else if (/Success/.test(response)) {
+                            $('#alert').css('display', 'block');
+                            $('#alertbox').html('<strong>Successfully Registered!</strong>');
+                            setTimeout(() => {
+                                $('#alert').css('display', 'none');
+                                $('#confirm').trigger('click', email)
+                                $('#register').html('register');
+                                $('.info-group').removeClass('isActive');
+                            }, 1000);
+                        } else {
+                            $('#register').html('register');
+                            $('#alert').css('display', 'block');
+                            $('#alertbox').html('<strong>Unable to register new user!</strong> Please try again.');
+                            setTimeout(() => {
+                                $('#alert').css('display', 'none');
+                            }, 1000);
+                        }
+                    });
             }
         });
     }
+    $('#confirm').click((event, email) => {
+        window.open(`confirmation.php?email=${email}`);
+    });
+    if ($('#login').length > 0) {
+        $('#login').on('click', (e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            $('#login').html('Please Wait...');
+            let email = $('#email').val();
+            let password = $('#password').val();
+            $.ajax({
+                type: 'POST',
+                url: 'login.php',
+                data: {
+                    email: email,
+                    password: password
+                },
+                cache: false,
+                success: function (response) {
+                    if (/Success/.test(response)) {
+                        $('#alert').css('display', 'block');
+                        $('#alertbox').html(`<strong>${response}</strong>`);
+                        setTimeout(() => {
+                            $('#alert').css('display', 'none');
+                            $('#conlog').trigger('click', email)
+                            $('#login').html('login');
+                            $('.info-group').removeClass('isActive');
+                        }, 1000);
+                    } else if (/Incorrect/.test(response)) {
+                        $('#alert').css('display', 'block');
+                        $('#alertbox').html(`<strong>${response}</strong>`);
+                        setTimeout(() => {
+                            $('#alert').css('display', 'none');
+                            $('#login').html('login');
+                            $('.info-group').removeClass('isActive');
+                        }, 1000);
+                    } else {
+                        $('#login').html('login');
+                    }
+                }
+            });
+        });
+    }
+    $('#conlog').click((event, email) => {
+        window.open(`dashboard.php?email=${email}`);
+    })
+    $('#contractbtn').click(() => {
+        $('#contractinput').select();
+        document.execCommand('copy');
+        $('#alert').css('display', 'block');
+        $('#alertbox').html(`<strong>Address copied!</strong>`);
+        setTimeout(() => {
+            $('#alert').css('display', 'none');
+        }, 2000);
+    })
     if ($('.close-side-widget').length > 0) {
         $('.close-side-widget').on('click', function (e) {
             e.preventDefault();
@@ -337,7 +368,6 @@
     $('.xs-sidebar-widget').on('click', function (e) {
         e.stopPropagation();
     });
-
 
     /*==========================================================
          back to top
@@ -370,6 +400,37 @@
         var bannerSlider = $("#client-slider");
         bannerSlider.owlCarousel({
             items: 5,
+            mouseDrag: true,
+            touchDrag: true,
+            dots: true,
+            loop: true,
+            autoplay: true,
+            autoplayTimeout: 2000,
+            autoplayHoverPause: true,
+            smartSpeed: 800,
+            responsive: {
+                // breakpoint from 0 up
+                0: {
+                    items: 2,
+                },
+                // breakpoint from 480 up
+                480: {
+                    items: 2,
+                },
+                // breakpoint from 768 up
+                768: {
+                    items: 4,
+                },
+                991: {
+                    items: 5,
+                }
+            }
+        });
+    }
+    if ($('#client-slider1').length > 0) {
+        var bannerSlider1 = $("#client-slider1");
+        bannerSlider1.owlCarousel({
+            items: 3,
             mouseDrag: true,
             touchDrag: true,
             dots: true,

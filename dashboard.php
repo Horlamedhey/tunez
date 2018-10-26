@@ -4,18 +4,18 @@ require 'vendor/autoload.php';
 use Josantonius\Session\Session;
 use sergeytsalkov\meekrodb;
 
-DB::$user = 'tunezwallet';
+DB::$user = 'tunebrrp_tunezwallet';
 DB::$password = 'admin@tunezwallet.io';
-DB::$dbName = 'users';
+DB::$dbName = 'tunebrrp_users';
 Session::init();
 $activated = DB::queryFirstRow("SELECT activated FROM usersTable WHERE email=%s", Session::get('email'));
-if ($activated['activated'] === no) {
-  header("Location: confirmation.php");
+if ($activated['activated'] === 'no') {
+  header("Location: confirmation.php?email=" . Session::get('email'));
 }
-// $referrals = DB::queryFirstRow("SELECT referrals FROM usersTable WHERE email=%s", Session::get('email'));
-// if (!Session::get('email')) {
-//   header("Location: index.php?loggedOut");
-// }
+$referrals = DB::queryFirstRow("SELECT referrals FROM usersTable WHERE email=%s", Session::get('email'));
+if (!Session::get('email')) {
+  header("Location: index.php?loggedOut");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -26,10 +26,12 @@ if ($activated['activated'] === no) {
   <!-- Place favicon.ico in the root directory -->
   <link rel="apple-touch-icon" href="assets/images/logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="theme-color" content="#865603" />
   <title>
     TunezWallet-Dashboard
   </title>
-  <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+  <meta content='width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=1, shrink-to-fit=no' name='viewport' />
+  <meta name="description" content="Introducing a platform for mass adoption of cryptocurrencies.">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <!-- Place favicon.ico in the root directory -->
     <link rel="apple-touch-icon" href="assets/images/logo.png">
@@ -48,13 +50,13 @@ if ($activated['activated'] === no) {
 </head>
 
 <body class="dark-edition">
-  <!--<div class="preloader" id="preloader">
+  <div class="preloader" id="preloader">
     <svg class="xs-preload" viewBox="0 0 120 120" width="120px" height="120px">
       <circle class="inner" cx="60" cy="60" r="32" />
       <circle class="middle" cx="60" cy="60" r="38" />
       <circle class="outer" cx="60" cy="60" r="44" />
     </svg>
-  </div>-->
+  </div>
   <div class="wrapper ">
     <div class="main-panel" style="float: left; width: 100%;">
       <!-- Navbar -->
@@ -62,14 +64,14 @@ if ($activated['activated'] === no) {
         <div class="container-fluid">
           <div class="navbar-wrapper">
             <a href="index.php" class="simple-text logo-normal">
-              <img width="90px" src="assets/images/logo.png" alt="logo">
+              <img width="90px" src="assets/images/logo.png" alt="Tunez-logo">
               TunezWallet
             </a>
           </div>
           <div class="justify-content-end">
-            <a class="navbar-brand" href="javascript:void(0)">
-              <i class="fa fa-dashboard"></i>
-              Dashboard
+            <a class="navbar-brand" href="logout.php">
+              <i class="fa fa-sign-out"></i>
+              Log Out
             </a>
           </div>
         </div>
@@ -77,35 +79,46 @@ if ($activated['activated'] === no) {
       <!-- End Navbar -->
       <div class="content">
         <div class="container-fluid">
-          <h2>Horlasco34@gmail.com, Welcome to your dashboard.</h2>
+          <div style="z-index: 999999; display: none; position: fixed; top: 100px; width: 100%; text-align: center;" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+              <span id="alertbox"></span>
+              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+              </button>
+          </div>
+          <h2><?php echo (Session::get('email')); ?>, Welcome to your dashboard.</h2>
           <h3>Note:</h3>
           <ol>
+            <li>
+              Your referral code is <code><?php echo (Session::get('ownReferralCode')); ?></code>, use it to earn 1,000 TUNEZ bonus per referral.
+            </li>
             <li>
               Join us on Telegram, Twitter and Youtube by clicking on the media icons below.
             </li>
             <li>
               As proof of joining our media channels, input your details in the respective media cards by clicking on the edit icon.
             </li>
-            <li>You will not be able to input your wallet address until you satisfy 1 & 2 above.</li>
+            <li>You will not be able to input your wallet address until you satisfy 2 & 3 above.</li>
           </ol>
           <div class="row">
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-icon">
-                  <div class="card-icon" style="background: #30A8DC;">
-                    <i class="fa fa-telegram"></i>
-                  </div>
+                  <a href="https://t.me/tunez_chat" target="_blank">
+                    <div class="card-icon" style="background: #30A8DC;">
+                      <i class="fa fa-telegram"></i>
+                    </div>
+                  </a>
                   <h4 class="card-title">Telegram Username</h4>
-                  <p class="card-category" id="usercontent1">Horla</p>
+                  <p class="card-category" id="usercontent1"><?php echo (Session::get('telegram')); ?></p>
                 </div>
                 <div class="card-footer">
                   <div id="stats1" class="stats">
                     <i class="fa fa-pencil"></i>
                   </div>
                   <div id="username1" class="input-group input-group-sm mb-1" style="width: unset;">
-                    <input value="Horla" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2">
+                    <input id="telegraminput" value="<?php echo (Session::get('telegram')); ?>" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Save</button>
+                      <button class="btn btn-outline-secondary" type="button" id="telegramsave">Save</button>
                     </div>
                   </div>
                 </div>
@@ -114,20 +127,22 @@ if ($activated['activated'] === no) {
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-icon">
-                  <div class="card-icon" style="background: #00ACED;">
-                    <i class="fa fa-twitter"></i>
-                  </div>
+                  <a href="https://twitter.com/Tunez_wallet" target="_blank">
+                    <div class="card-icon" style="background: #00ACED;">
+                      <i class="fa fa-twitter"></i>
+                    </div>
+                  </a>
                   <h4 class="card-title">Twitter Handle</h4>
-                  <p class="card-category" id="usercontent2">Horlasco34@yahoo.com</p>
+                  <p class="card-category" id="usercontent2"><?php echo (Session::get('twitter')); ?></p>
                 </div>
                 <div class="card-footer">
                   <div class="stats" id="stats2">
                     <i class="fa fa-pencil"></i>
                   </div>
                   <div id="username2" class="input-group input-group-sm mb-1" style="width: unset;">
-                    <input value="Horlasco34@yahoo.com" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2">
+                    <input id="twitterinput" value="<?php echo (Session::get('twitter')); ?>" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Save</button>
+                      <button class="btn btn-outline-secondary" type="button" id="twittersave">Save</button>
                     </div>
                   </div>
                 </div>
@@ -136,20 +151,22 @@ if ($activated['activated'] === no) {
             <div class="col-xl-3 col-lg-6 col-md-6 col-sm-6">
               <div class="card card-stats">
                 <div class="card-header card-header-danger card-header-icon">
-                  <div class="card-icon">
-                    <i class="fa fa-youtube"></i>
-                  </div>
+                  <a href="https://www.youtube.com/channel/UCLVxEwLZj-JFYR_S2LvuviQ" target="_blank">
+                    <div class="card-icon">
+                      <i class="fa fa-youtube"></i>
+                    </div>
+                  </a>
                   <h4 class="card-title">Youtube Username</h4>
-                  <p class="card-category" id="usercontent3">Variable92</p>
+                  <p class="card-category" id="usercontent3"><?php echo (Session::get('youtube')); ?></p>
                 </div>
                 <div class="card-footer">
                   <div class="stats" id="stats3">
                     <i class="fa fa-pencil"></i>
                   </div>
                   <div id="username3" class="input-group input-group-sm mb-1" style="width: unset;">
-                    <input value="Variable92" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2">
+                    <input id="youtubeinput" value="<?php echo (Session::get('youtube')); ?>" type="text" class="form-control" placeholder="Username" aria-label="Username" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Save</button>
+                      <button class="btn btn-outline-secondary" type="button" id="youtubesave">Save</button>
                     </div>
                   </div>
                 </div>
@@ -162,16 +179,16 @@ if ($activated['activated'] === no) {
                     <i class="mdi mdi-ethereum"></i>
                   </div>
                   <h4 class="card-title">Ethereum Address</h4>
-                  <p class="card-category" id="usercontent4">Variable92</p>
+                  <p class="card-category" id="usercontent4"><?php echo (Session::get('ethereum')); ?></p>
                 </div>
                 <div class="card-footer">
                   <div class="stats" id="stats4" >
                     <i class="fa fa-pencil"></i>
                   </div>
                   <div id="username4" class="input-group input-group-sm mb-1" style="width: unset;">
-                    <input value="Variable92" type="text" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="button-addon2">
+                    <input id="ethereuminput" value="<?php echo (Session::get('ethereum')); ?>" type="text" class="form-control" placeholder="Address" aria-label="Address" aria-describedby="button-addon2">
                     <div class="input-group-append">
-                      <button class="btn btn-outline-secondary" type="button" id="button-addon2">Save</button>
+                      <button class="btn btn-outline-secondary" type="button" id="ethereumsave">Save</button>
                     </div>
                   </div>
                 </div>
@@ -186,7 +203,7 @@ if ($activated['activated'] === no) {
                 </div>
                 <div class="card-body">
                   <p class="card-category">Tokens</p>
-                  <h3 class="card-title">10,000
+                  <h3 class="card-title"><?php echo (Session::get('tokens')); ?>
                     <small>TUNEZ</small>
                   </h3>
                 </div>
@@ -200,7 +217,7 @@ if ($activated['activated'] === no) {
                 </div>
                 <div class="card-body">
                   <p class="card-category">Referrals</p>
-                  <h3 class="card-title">127</h3>
+                  <h3 class="card-title"><?php echo ($referrals['referrals']); ?></h3>
                 </div>
                 <div class="card-footer">
                 </div>
@@ -213,7 +230,7 @@ if ($activated['activated'] === no) {
                 <div class="card-body">
                   <p class="card-category">Referal Tokens</p>
                   <h3 class="card-title">
-                    75,000
+                    <?php echo ($referrals['referrals'] * 1000); ?>
                     <small>TUNEZ</small>
                   </h3>
                 </div>
@@ -228,7 +245,7 @@ if ($activated['activated'] === no) {
                 <div class="card-body">
                   <p class="card-category">Total Tokens</p>
                   <h3 class="card-title">
-                    245,000
+                    <?php echo (Session::get('tokens') + ($referrals['referrals'] * 1000)); ?>
                     <small>TUNEZ</small>
                   </h3>
                 </div>
@@ -252,6 +269,124 @@ if ($activated['activated'] === no) {
   </footer>
   </div>
   <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script>
+    $(window).on('load', function () {
+        $('#preloader').addClass('loaded');
+    });
+  
+  /*media*/
+
+  $('#telegramsave').on('click', () => {
+    $('#telegramsave').html('...');
+    $.ajax({
+      type: 'POST',
+      url: 'media.php',
+      data: {
+        address: $('#telegraminput').val(),
+        media: 'telegram'
+      },
+      cache: false,
+      success: (response) => {
+        if (/Success/.test(response)) {
+          $('#alert').css('display', 'block');
+          $('#alertbox').html(`<strong>${response}</strong>`);
+          $('#usercontent1').html($('#telegraminput').val());
+          $('#username1').slideToggle();
+          setTimeout(() => {
+            $('#alert').css('display', 'none');
+            $('#telegramsave').html('save');
+            $('.info-group').removeClass('isActive');
+          }, 1000);
+        }
+      }
+    });
+  });
+  $('#twittersave').on('click', () => {
+    $('#twittersave').html('...')
+    $.ajax({
+      type: 'POST',
+      url: 'media.php',
+      data: {
+        address: $('#twitterinput').val(),
+        media: 'twitter'
+      },
+      cache: false,
+      success: (response) => {
+        if (/Success/.test(response)) {
+          $('#alert').css('display', 'block');
+          $('#alertbox').html(`<strong>${response}</strong>`);
+          $('#usercontent2').html($('#twitterinput').val());
+          $('#username2').slideToggle();
+          setTimeout(() => {
+            $('#alert').css('display', 'none');
+            $('#twittersave').html('save');
+            $('.info-group').removeClass('isActive');
+          }, 1000);
+        }
+      }
+    });
+  });
+  $('#youtubesave').on('click', () => {
+    $('#youtubesave').html('...')
+    $.ajax({
+      type: 'POST',
+      url: 'media.php',
+      data: {
+        address: $('#youtubeinput').val(),
+        media: 'youtube'
+      },
+      cache: false,
+      success: (response) => {
+        if (/Success/.test(response)) {
+          $('#alert').css('display', 'block');
+          $('#alertbox').html(`<strong>${response}</strong>`);
+          $('#usercontent3').html($('#youtubeinput').val());
+          $('#username3').slideToggle();
+          setTimeout(() => {
+            $('#alert').css('display', 'none');
+            $('#youtubesave').html('save');
+            $('.info-group').removeClass('isActive');
+          }, 1000);
+        }
+      }
+    });
+  });
+  $('#ethereumsave').on('click', () => {
+    if (document.getElementById('usercontent1').innerHTML !== '' && document.getElementById('usercontent2').innerHTML !== '') {
+      $('#ethereumsave').html('...')
+      $.ajax({
+        type: 'POST',
+        url: 'media.php',
+        data: {
+          address: $('#ethereuminput').val(),
+          media: 'ethereum'
+        },
+        cache: false,
+        success: (response) => {
+          if (/Success/.test(response)) {
+            $('#alert').css('display', 'block');
+            $('#alertbox').html(`<strong>${response}</strong>`);
+            $('#usercontent4').html($('#ethereuminput').val());
+            $('#username4').slideToggle();
+            setTimeout(() => {
+              $('#alert').css('display', 'none');
+              $('#ethereumsave').html('save');
+              $('.info-group').removeClass('isActive');
+            }, 1000);
+          }
+        }
+      });
+    } else {
+      $('#alert').css('display', 'block');
+      $('#alertbox').html(`<strong>Please complete the tasks in NOTE #2 & #3.</strong>`);
+      setTimeout(() => {
+        $('#alert').css('display', 'none');
+        $('#youtubesave').html('save');
+        $('.info-group').removeClass('isActive');
+      }, 3000);
+    }
+  });
+  </script>
   <script src="assets/js/dashboard.js"></script>
 </body>
 

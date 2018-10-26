@@ -4,10 +4,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="x-ua-compatible" content="ie=edge,chrome=1">
+    <meta name="theme-color" content="#865603" />
     <title>TunezWallet</title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Introducing a platform for mass adoption of cryptocurrencies.">
+    <meta content='width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=1, shrink-to-fit=no' name='viewport' />
 
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,400i,500,500i,700,700i,900,900i" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800,800i" rel="stylesheet">
@@ -69,7 +70,7 @@
                 </div>
                 <div class="sidebar-textwidget" style="margin-bottom: 100px;">
                     <div class="sidebar-logo-wraper">
-                        <img src="assets/images/logo.png" alt="sidebar logo">
+                        <img src="assets/images/logo.png" alt="sidebar tunez-logo">
                     </div>
                     <div class="subscribe-from">
                         <p id="regtext">Join the Airdrop Campaign!</p>
@@ -101,14 +102,17 @@
                                     Invalid referral code.
                                 </div>
                             </div>
-                            <button id="formbtn" class="btn btn-primary" type="submit"></button>
+                            <button id="register" class="btn btn-primary" type="submit">register</button>
+                            <button id="login" class="btn btn-primary" type="submit">login</button>
+                            <button style="visibility: hidden;" id="confirm" class="btn btn-primary" type="submit"></button>
+                            <button style="visibility: hidden;" id="conlog" class="btn btn-primary" type="submit"></button>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <div style="z-index: 999999; display: none;" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
+    <div style="z-index: 999999; display: none; position: fixed; top: 100px; width: 100%; text-align: center;" id="alert" class="alert alert-warning alert-dismissible fade show" role="alert">
         <span id="alertbox"></span>
         <button type="button" class="close" data-dismiss="alert" aria-label="Close">
             <span aria-hidden="true">&times;</span>
@@ -126,7 +130,7 @@
 
                 <div class="nav-header">
                     <a class="text-light nav-brand" href="index.html">
-                        <img width="90px" src="assets/images/logo.png" alt="logo">
+                        <img width="90px" src="assets/images/logo.png" alt="tunez-logo">
                         TunezWallet
                     </a>
                     <div class="nav-toggle"></div>
@@ -135,7 +139,7 @@
                 <div class="bg-dark nav-menus-wrapper xs-menu">
                     <ul class="header-right align-to-right" style="display: flex; line-height: 43px;">
 
-                        <li>
+                        <!-- <li>
                             <a href="#" class="text-light navSidebar-button-reg">
                                 <i class="fa fa-user-plus"></i>
                             </a>
@@ -145,9 +149,15 @@
                             <a href="#" class="text-light navSidebar-button-log">
                                 <i class="fa fa-sign-in"></i>
                             </a>
-                        </li>
-
-                        <li>
+                        </li> -->
+                        <style>
+                            @media(max-width: 990px){
+                                .dash {
+                                    display: none!important;
+                                }
+                            }
+                        </style>
+                        <li class="dash d-lg-inline-block">
                             <a class="text-light" href="dashboard.php">
                                 <i class="fa fa-line-chart"></i>
                             </a>
@@ -155,11 +165,20 @@
                     </ul>
                     <ul class="nav-menu align-to-right">
                         <li class="text-light active"><a class="text-light" href="#">Home</a></li>
-                        <li><a class="text-light" href="#featured" class="scrolls">Features</a></li>
-                        <li><a class="text-light" href="#how_work" class="scrolls">How it work</a></li>
-                        <li><a class="text-light" href="#documents" class="scrolls">Documentations</a></li>
-                        <li><a class="text-light" href="#team" class="scrolls">Team</a></li>
-                        <li><a class="text-light" href="#blog" class="scrolls">Blog</a></li>
+                        <li><a href="#featured" class="scrolls text-light">Features</a></li>
+                        <li><a href="#how_work" class="scrolls text-light">Airdrop | Ico</a></li>
+                        <li><a href="#documents" class="scrolls text-light">Documentations</a></li>
+                        <li><a href="#team" class="scrolls text-light">Team</a></li>
+                        <li><a href="#blog" class="scrolls text-light">Media</a></li>
+                        <li>
+                            <a href="#" class="text-light navSidebar-button-reg">Register</a>
+                        </li>
+                        <li>
+                            <a href="#" class="text-light navSidebar-button-log">Login</a>
+                        </li>
+                        <li class="d-sm-inline-block d-lg-none">
+                            <a href="dashboard.php" class="text-light">Dashboard</a>
+                        </li>
                     </ul>
 
                 </div>
@@ -180,21 +199,20 @@
                             <div class="banner-content">
                                 <h2 class="banner-title">Investing in a platform for mass adoption of cryptocurrencies.</h2>
                                 <p>
-                                    Providing you with a combo-packed platform aimed at mass adoption using the
-                                    blockchain technology.
+                                    Tunez app is the first crypto app to combine three separate mainstream industries in one single piece.
                                 </p>
                             </div>
                         </div>
 
                         <div class="banner-img-item">
                             <img style="max-width: 100%; height: auto; border-radius: 5px;" class="banner-img" src="assets/images/banner/blockchain3.png"
-                                alt="">
+                                alt="Ethereum-crypto">
                             <img style="max-width: 100px;" class="banner-ico banner-ico-1" src="assets/images/logo.png"
-                                alt="">
+                                alt="tunez-logo">
                             <img style="max-width: 100px;" class="banner-ico banner-ico-2" src="assets/images/logo.png"
-                                alt="">
+                                alt="tunez-logo">
                             <img style="max-width: 100px;" class="banner-ico banner-ico-3" src="assets/images/logo.png"
-                                alt="">
+                                alt="tunez-logo">
                         </div>
                     </div><!--  .cont  ainer END -->
                 </div>
@@ -214,16 +232,24 @@
                                     <h2 class="column-title">Everything Blockchain Is No Joke, Taking the World By
                                         Storm</h2>
                                 </div>
+                                <div class="align-self-center col-lg-8">
+                                    <div class="work-video" style="z-index: 1;">
+                                        <img src="assets/images/how-works/anim1.jpeg" alt="tunez-project-explainer">
+                                        <a href="https://www.youtube.com/watch?v=rAPkTSl871s" class="video-btn xs-video"
+                                            data-effect="mfp-zoom-in">
+                                            <i class="icon icon-play-button2"></i>
+                                            <span class="btn-hover-anim"></span>
+                                        </a>
+                                    </div>
+                                </div><!-- col end -->
                             </div><!-- col end -->
                             <div class="col-md-5 offset-md-1 wow fadeInUp" data-wow-duration="2s">
                                 <div class="blockcain-top-content">
                                     <p>
-                                        Seamless streaming and download of music and videos, chatting and sharing of
-                                        resources such
-                                        as, music, videos and cryptocurrency with friends and loved ones
-                                        and a multi-cryptocurrency wallet all at your fingertip by leveraging the
-                                        benefits of the Blockchain technology.
+                                        We appealing to people to use cryptocurrencies through what they like doing best.
                                     </p>
+                                    <p>Almost everybody owning a mobile phone has a social media app and music player app on their mobile device. We are aiming to chip in Tunez crypto wallet to every mobile device through TUNEZ app. We are also building an application for the unbanked as we would be integrating a faucet that pays you for your activities on our app in a decentralized manner in TUNEZ TOKENs. </p>
+                                    <p>Artist get paid in a decentralized manner through a smart-contract for revenue generated by their music, we charge only 1% from them. Unlike other music store, artist on TUNEZ get 99% of revenue generated by their music.</p>
                                 </div>
                             </div>
                         </div>
@@ -249,9 +275,6 @@
                                         <h3 class="feature-title">
                                             Secure
                                         </h3>
-                                        <p>
-                                            A better way to present your money using fully featured digital
-                                        </p>
                                     </div>
                                 </div><!-- col end -->
                                 <div class="col-md-4 wow fadeInUp" data-wow-duration="1.5s">
@@ -260,9 +283,6 @@
                                         <h3 class="feature-title">
                                             Outstanding UI/UX
                                         </h3>
-                                        <p>
-                                            A better way to present your money using fully featured digital
-                                        </p>
                                     </div>
                                 </div><!-- col end -->
                                 <div class="col-md-4 wow fadeInUp" data-wow-duration="2s">
@@ -271,9 +291,6 @@
                                         <h3 class="feature-title">
                                             Semi-Decentralized
                                         </h3>
-                                        <p>
-                                            A better way to present your money using fully featured digital
-                                        </p>
                                     </div>
                                 </div><!-- col end -->
                                 <div class="col-md-4 wow fadeInUp" data-wow-duration="2.5s">
@@ -282,9 +299,6 @@
                                         <h3 class="feature-title">
                                             Streaming and Downloading
                                         </h3>
-                                        <p>
-                                            A better way to present your money using fully featured digital
-                                        </p>
                                     </div>
                                 </div><!-- col end -->
                                 <div class="col-md-4 wow fadeInUp" data-wow-duration="2.5s">
@@ -293,9 +307,6 @@
                                         <h3 class="feature-title">
                                             Sharing of Resources
                                         </h3>
-                                        <p>
-                                            A better way to present your money using fully featured digital
-                                        </p>
                                     </div>
                                 </div><!-- col end -->
                                 <div class="col-md-4 wow fadeInUp" data-wow-duration="2.5s">
@@ -304,16 +315,13 @@
                                         <h3 class="feature-title">
                                             Rewarding Participation
                                         </h3>
-                                        <p>
-                                            A better way to present your money using fully featured digital
-                                        </p>
                                     </div>
                                 </div><!-- col end -->
                             </div><!-- row end -->
                         </div><!-- main-fetured-item end -->
 
                         <div class="featured-poligonal-img wow fadeInUp" data-wow-duration="1.5s">
-                            <img class="poligonal-img" src="assets/images/feature/poligonal.png" alt="">
+                            <img class="poligonal-img" src="assets/images/feature/poligonal.png" alt="tunez-features">
                         </div>
 
                     </div>
@@ -326,7 +334,7 @@
                         <div class="row">
                             <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-duration="1.5s">
                                 <div class="blockcain-img">
-                                    <img src="assets/images/blockchain/app.png" alt="">
+                                    <img src="assets/images/blockchain/app.png" alt="tunez-app">
                                 </div>
                             </div><!-- col end -->
                             <div class="col-md-6 col-lg-5 offset-lg-1 wow fadeInUp" data-wow-duration="2s">
@@ -334,11 +342,18 @@
                                     <small class="xs-section-title">Entertainment solution</small>
                                     <h3 class="column-title">TunezWallet for Entertainment</h3>
                                     <p>
-                                        A better way to utilize your money on an entertainment platform that fully
-                                        features digital
-                                        currency usage for mass adoption, making it the first of it's kind, enabling
-                                        you to seamlessly explore the entertainment world.
+                                        Tunez is a platform designed to be a tool for mass adoption. Tunez is a crypto wallet, music and music video player and store and an encrypted chat messenger. Users can stream and download music using Tunez token as a payment for these services. Users funds are kept in a cold wallet to keep them save. We also have a faucet that incentivizes you for your activities on the app.
                                     </p>
+                                    <div class="align-self-center col-lg-8">
+                                        <div class="work-video" style="z-index: 1;">
+                                            <img src="assets/images/how-works/anim.jpeg" alt="tunez-app-explainer">
+                                            <a href="https://www.youtube.com/watch?v=1qyY0ZjROuo" class="video-btn xs-video"
+                                                data-effect="mfp-zoom-in">
+                                                <i class="icon icon-play-button2"></i>
+                                                <span class="btn-hover-anim"></span>
+                                            </a>
+                                        </div>
+                                    </div><!-- col end -->
                                     <a href="#" class="btn btn-primary disabled">Coming Soon!!!</a>
                                 </div>
                             </div>
@@ -353,27 +368,77 @@
                             <div class="row owl-carousel" id="client-slider">
                                 <div class="col-sm wow fadeInUp" data-wow-duration="1.5s">
                                     <div class="client-logo">
-                                        <img src="assets/images/blockchain/app1.png" alt="">
+                                        <img src="assets/images/blockchain/app1.png" alt="tunez-app-demo">
                                     </div>
                                 </div>
                                 <div class="col-sm wow fadeInUp" data-wow-duration="2s">
                                     <div class="client-logo">
-                                        <img src="assets/images/blockchain/app2.png" alt="">
+                                        <img src="assets/images/blockchain/app2.png" alt="tunez-app-demo">
                                     </div>
                                 </div>
                                 <div class="col-sm wow fadeInUp" data-wow-duration="2.5s">
                                     <div class="client-logo">
-                                        <img src="assets/images/blockchain/app3.png" alt="">
+                                        <img src="assets/images/blockchain/app3.png" alt="tunez-app-demo">
                                     </div>
                                 </div>
                                 <div class="col-sm wow fadeInUp" data-wow-duration="3s">
                                     <div class="client-logo">
-                                        <img src="assets/images/blockchain/app4.png" alt="">
+                                        <img src="assets/images/blockchain/app4.png" alt="tunez-app-demo">
                                     </div>
                                 </div>
                                 <div class="col-sm wow fadeInUp" data-wow-duration="3.5s">
                                     <div class="client-logo">
-                                        <img src="assets/images/blockchain/app5.png" alt="">
+                                        <img src="assets/images/blockchain/app5.png" alt="tunez-app-demo">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section> <!-- client logo section end -->
+            </div>
+            <div class="blockcain-and-logo-area">
+                <!-- blockcain business section start -->
+                <section class="blockcain-business-sec">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 wow fadeInUp" data-wow-duration="1.5s">
+                                <div class="blockcain-img">
+                                    <img src="assets/images/blockchain/app5.png" alt="tunez-app-wallet">
+                                </div>
+                            </div><!-- col end -->
+                            <div class="col-md-6 col-lg-5 offset-lg-1 wow fadeInUp" data-wow-duration="2s">
+                                <div class="blockcain-content">
+                                    <small class="xs-section-title">Accessibility solution</small>
+                                    <h3 class="column-title">Tunez Debit and Gift cards</h3>
+                                    <p>
+                                        To give the Tunez token more value, we would be partnering with debit card providers to issue Tunez debit cards. The biggest advantage of Tunez Card is making payment and using ATM to withdraw cash in any fiat currency at anywhere in the world, using cryptos.
+                                    </p>
+                                    <p>We are also going to attempt to issue gift cards. Gift cards would be purchased in any tunez legalized store all around the world. Gift cards are generally redeemable only for purchases at the relevant retail premises and cannot be cashed out, and in some situations may be subject to an expiry date or fees.</p>
+                                    <a href="#" class="btn btn-primary disabled">Coming Soon!!!</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section> <!-- blockcain business section end -->
+
+                <!-- client logo section start -->
+                <section class="client-logo-sec">
+                    <div class="container">
+                        <div class="client-logo-item">
+                            <div class="row owl-carousel" id="client-slider1">
+                                <div class="col-sm wow fadeInUp" data-wow-duration="1.5s">
+                                    <div class="client-logo">
+                                        <img src="assets/images/blockchain/app6.png" alt="tunez-card">
+                                    </div>
+                                </div>
+                                <div class="col-sm wow fadeInUp" data-wow-duration="3s">
+                                    <div class="client-logo">
+                                        <img src="assets/images/blockchain/app7.png" alt="tunez-card">
+                                    </div>
+                                </div>
+                                <div class="col-sm wow fadeInUp" data-wow-duration="3.5s">
+                                    <div class="client-logo">
+                                        <img src="assets/images/blockchain/app8.png" alt="tunez-card">
                                     </div>
                                 </div>
                             </div>
@@ -384,7 +449,7 @@
         </div>
 
     </div>
-    <div class="how-work-and-token-area">
+    <div class="how-work-and-token-area" style="overflow-x: hidden;">
         <!-- how work section start -->
         <section class="how-work-sec section-padding" id="how_work">
             <div class="container">
@@ -396,6 +461,17 @@
                         </div>
                     </div>
                 </div><!-- row end -->
+                <div class="row mb-3">
+                    <div class="col-md-6 wow fadeInUp " data-wow-duration="1.5s">
+                        <h3 class="xs-single-title">Airdrop</h3>
+                        <p>Earn some Tunez for free by participating in our airdrop campaign today! Remember it is limited to just 10,000 people.</p>
+                        <p><a class="navSidebar-button-reg btn-sm btn-secondary text-white" style="cursor: pointer;">Join the Airdrop Campaing Here.</a></p>
+                    </div><!-- col end -->
+                    <div class="col-md-6 wow fadeInUp " data-wow-duration="1.5s">
+                        <h3 class="xs-single-title">Bounty</h3>
+                        <p>Access our <a target="_blank" href="https://bitcointalk.org/index.php?topic=5057538.0" class="btn-sm btn-secondary text-white" style="cursor: pointer;">Bounty Program here!</a> to earn free Tunez by participating in our bounty campaign!</p>
+                    </div><!-- col end -->
+                </div>
                 <div class="row">
                     <div class="col-lg-4 col-md-6 wow fadeInUp " data-wow-duration="1.5s">
                         <div class="xs-count-down">
@@ -461,13 +537,23 @@
                                     <strong> Total Number of Tokens</strong>
                                     <span>2,400,000,000 TUNEZ</span>
                                 </li>
+                                <li>
+                                    <strong> Contract address</strong>
+                                    <div class="input-group input-group-sm mb-1">
+                                        <input value="0x6a33c2c807124eae26f6188877c15675d3889ca3" type="text" class="form-control bg-dark text-white" aria-label="contract" id="contractinput">
+                                        <div class="input-group-append">
+                                        <button id="contractbtn" class="btn btn-secondary" type="button">Copy</button>
+                                        </div>
+                                    </div>
+                                    <!-- <p>0x6a33c2c807124eae26f6188877c15675d3889ca3</p> -->
+                                </li>
                             </ul>
                         </div>
                     </div><!-- col end -->
                     <div class="col-lg-4 align-self-center col-md-12 wow fadeInUp" data-wow-duration="2.5s">
                         <div class="work-video">
-                            <img src="assets/images/how-works/vid.png" alt="">
-                            <a href="https://www.youtube.com/watch?v=2X9eJF1nLiY" class="video-btn xs-video"
+                            <img src="assets/images/how-works/demo.jpeg" alt="tunez-app-demo-video">
+                            <a href="https://www.youtube.com/watch?v=AbjePK7Hm3M" class="video-btn xs-video"
                                 data-effect="mfp-zoom-in">
                                 <i class="icon icon-play-button2"></i>
                                 <span class="btn-hover-anim"></span>
@@ -500,15 +586,15 @@
                                 <div class=" col-sm-5">
                                     <ul class="chart-label">
                                         <li>
-                                            <img src="assets/images/token/label_img1.png" alt="">
+                                            <img src="assets/images/token/label_img1.png" alt="airdrop/bounty-percentage">
                                             <span class="chart-bg1">12.92 %</span> Airdrop/Bounty
                                         </li>
                                         <li>
-                                            <img src="assets/images/token/label_img3.png" alt="">
+                                            <img src="assets/images/token/label_img3.png" alt="marketing-percentage">
                                             <span class="chart-bg3">3.75 %</span> Marketing and Team
                                         </li>
                                         <li>
-                                            <img src="assets/images/token/label_img4.png" alt="">
+                                            <img src="assets/images/token/label_img4.png" alt="ICO percentage">
                                             <span class="chart-bg4">83.33 %</span> Sale Drop ICO
                                         </li>
                                     </ul>
@@ -526,19 +612,19 @@
                                 <div class="col-sm-5">
                                     <ul class="chart-label chart-label2">
                                         <li>
-                                            <img src="assets/images/token/label_img1.png" alt="">
+                                            <img src="assets/images/token/label_img1.png" alt="legal-ops-percentage">
                                             <span class="chart-bg4">5 %</span> Legal Operation
                                         </li>
                                         <li>
-                                            <img src="assets/images/token/label_img2.png" alt="">
+                                            <img src="assets/images/token/label_img2.png" alt="operational-cost-percentage">
                                             <span class="chart-bg3">5 %</span> Operational Cost
                                         </li>
                                         <li>
-                                            <img src="assets/images/token/label_img3.png" alt="">
+                                            <img src="assets/images/token/label_img3.png" alt="tunez-app-dev-percentage">
                                             <span class="chart-bg1">40 %</span> Product Development
                                         </li>
                                         <li>
-                                            <img src="assets/images/token/label_img2.png" alt="">
+                                            <img src="assets/images/token/label_img2.png" alt="marketing percentage">
                                             <span class="chart-bg2">50 %</span> Marketing and Lisiting
                                         </li>
                                     </ul>
@@ -604,12 +690,12 @@
                             </li>
                             <li id="2018e">
                                 <img src="assets/images/roadmap/2.png" width="256" height="256" />
-                                <h1>November 4th, 2018</h1>
+                                <h1>November 7th, 2018</h1>
                                 <p>ICO starts.</p>
                             </li>
                             <li id="2018f">
                                 <img src="assets/images/roadmap/2.png" width="256" height="256" />
-                                <h1>December 4th, 2018</h1>
+                                <h1>December 7th, 2018</h1>
                                 <p>ICO ends.</p>
                             </li>
                             <li id="2018g">
@@ -686,7 +772,7 @@
                         <div class="nav xs-tabs-menu" id="v-pills-tab" role="tablist" aria-orientation="horizontal">
                             <a class="active col-md" id="v-pills-app-tab" data-toggle="pill" href="#v-pills-app" role="tab"
                                 aria-controls="v-pills-app" aria-selected="true">
-                                <img src="assets/images/logo.png" alt="">
+                                <img src="assets/images/logo.png" alt="tunez-app-showcase">
                                 TunezWallet
                             </a>
 
@@ -739,7 +825,7 @@
                                                         <img src="assets/images/documentation/linux_1.png" alt="">
                                                     </li> -->
                                                     <li>
-                                                        <img src="assets/images/documentation/android_1.png" alt="">
+                                                        <img src="assets/images/documentation/android_1.png" alt="tunez-android-app-download">
                                                         <a href="#" class="btn btn-primary disabled">Coming Soon!!!</a>
                                                     </li>
                                                 </ul>
@@ -747,7 +833,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <div class="xs-tabs-img">
-                                                <img src="assets/images/blockchain/app1.png" alt="">
+                                                <img src="assets/images/blockchain/app1.png" alt="tunez-app-demo">
                                             </div>
                                         </div>
                                     </div>
@@ -756,17 +842,14 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="xs-tabs-img text-center">
-                                                <img src="assets/images/documentation/whitepaper.png" alt="">
+                                                <img src="assets/images/documentation/whitepaper.png" alt="tunez-terms and conditions">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="xs-white-tabs-content">
                                                 <h3 class="xs-single-title">Terms & Conditions</h3>
                                                 <p>
-                                                    A better way to present your money using fully featured digital
-                                                    currency and
-                                                    now available on the team xpeed studio for It is the fastest and
-                                                    most scalable digital asset,
+                                                    Do note that citizens of USA, Canada and China are not allowed to participate in this ICO. Read our terms and conditions for more info.
                                                 </p>
                                                 <a target="_blank" href="assets/images/documentation/Terms&Conditions.pdf"
                                                     class="btn btn-primary sm-btn">Read
@@ -779,18 +862,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="xs-tabs-img text-center">
-                                                <img src="assets/images/documentation/whitepaper.png" alt="">
+                                                <img src="assets/images/documentation/whitepaper.png" alt="tunez-whitepaper">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="xs-white-tabs-content">
                                                 <h3 class="xs-single-title">Whitepaper</h3>
-                                                <p>
-                                                    A better way to present your money using fully featured digital
-                                                    currency and
-                                                    now available on the team xpeed studio for It is the fastest and
-                                                    most scalable digital asset,
-                                                </p>
+                                                
                                                 <a target="_blank" href="assets/images/documentation/Whitepaper.pdf"
                                                     class="btn btn-primary sm-btn">Read
                                                     Now</a>
@@ -802,18 +880,13 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <div class="xs-tabs-img text-center">
-                                                <img src="assets/images/documentation/whitepaper.png" alt="">
+                                                <img src="assets/images/documentation/whitepaper.png" alt="tunez-token-metrics">
                                             </div>
                                         </div>
                                         <div class="col-md-6">
                                             <div class="xs-white-tabs-content">
                                                 <h3 class="xs-single-title">Token Metrics</h3>
-                                                <p>
-                                                    A better way to present your money using fully featured digital
-                                                    currency and
-                                                    now available on the team xpeed studio for It is the fastest and
-                                                    most scalable digital asset,
-                                                </p><a target="_blank" href="assets/images/documentation/TOKEN_METRICS.pdf"
+                                                <a target="_blank" href="assets/images/documentation/TOKEN_METRICS.pdf"
                                                     class="btn btn-primary sm-btn">Read
                                                     Now</a>
                                             </div>
@@ -827,9 +900,9 @@
             </div><!-- container end -->
             <div class="documentaion-shap-img">
                 <img class="d-shap-img-1 wow fadeInLeft" data-wow-duration="1.5s" id="leftglobe" src="assets/images/documentation/globe1.png"
-                    alt="">
+                    alt="tunez-anime">
                 <img class="d-shap-img-2 wow fadeInRight" data-wow-duration="1.5s" src="assets/images/documentation/globe2.png"
-                    alt="">
+                    alt="tunez-anime1">
 
             </div>
         </section> <!-- document section end -->
@@ -849,64 +922,64 @@
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-duration="1.5s">
                         <div class="single-team">
                             <div class="team-img">
-                                <img src="assets/images/team/team_1.jpg" alt="">
+                                <img src="assets/images/team/team_1.jpg" alt="tunez-ceo">
                                 <div class="team-social">
-                                    <a href="#">
+                                    <a target="_blank" href="https://www.linkedin.com/in/vijay-patil-230528173/">
                                         <i class="icon icon-linkedin"></i>
                                     </a>
                                 </div>
                             </div>
                             <div class="team-content">
-                                <h3 class="xs-title md">James Carter</h3>
-                                <p>CEO</p>
+                                <h3 class="xs-title md">Vijay Patil</h3>
+                                <p>Ceo</p>
                             </div>
                         </div>
                     </div> <!-- Col End -->
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-duration="2s">
                         <div class="single-team">
                             <div class="team-img">
-                                <img src="assets/images/team/team_2.jpg" alt="">
+                                <img src="assets/images/team/team_2.jpg" alt="tunez-operations-director">
                                 <div class="team-social">
-                                    <a href="#">
+                                    <a target="_blank" href="https://www.linkedin.com/in/shruti-joshi-139386167/">
                                         <i class="icon icon-linkedin"></i>
                                     </a>
                                 </div>
                             </div>
                             <div class="team-content">
-                                <h3 class="xs-title md">Jenifar Lorany</h3>
-                                <p>Marketing Head</p>
+                                <h3 class="xs-title md">Shruti Joshi</h3>
+                                <p>Marketing and Operations Director</p>
                             </div>
                         </div>
                     </div> <!-- Col End -->
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-duration="2.5s">
                         <div class="single-team">
                             <div class="team-img">
-                                <img src="assets/images/team/team_3.jpg" alt="">
+                                <img src="assets/images/team/team_3.jpeg" alt="tunes-CRM">
                                 <div class="team-social">
-                                    <a href="#">
+                                    <a target="_blank" href="https://www.linkedin.com/in/akshay-ahuja-a878a7b6/">
                                         <i class="icon icon-linkedin"></i>
                                     </a>
                                 </div>
                             </div>
                             <div class="team-content">
-                                <h3 class="xs-title md">Michel Ramos</h3>
-                                <p>HR Head</p>
+                                <h3 class="xs-title md">Akshay Ahuja</h3>
+                                <p>Community Relations Manager</p>
                             </div>
                         </div>
                     </div> <!-- Col End -->
                     <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-duration="3s">
                         <div class="single-team">
                             <div class="team-img">
-                                <img src="assets/images/team/team_4.jpg" alt="">
+                                <img src="assets/images/team/team_4.jpg" alt="tunez-developer">
                                 <div class="team-social">
-                                    <a href="#">
+                                    <a target="_blank" href="https://www.linkedin.com/in/joseph-amey-b05a8b160">
                                         <i class="icon icon-linkedin"></i>
                                     </a>
                                 </div>
                             </div>
                             <div class="team-content">
-                                <h3 class="xs-title md">Lorence Katie</h3>
-                                <p>Lead Designer</p>
+                                <h3 class="xs-title md">Joseph Amey</h3>
+                                <p>Lead Developer</p>
                             </div>
                         </div>
                     </div> <!-- Col End -->
@@ -916,21 +989,20 @@
         </section> <!-- team section end -->
     </div>
 
-    <div class="blog-and-footer-area">
+    <div style="padding-top: 60px;" id="blog" class="blog-and-footer-area">
         <div class="blog-and-social-area">
             <div class="section-title-item">
-                <small class="xs-section-title">Media Coverage</small>
-                <h2 class="section-title">Media</h2>
+                <h2 class="section-title">Social Media Links</h2>
             </div>
             <!-- social list section start -->
-            <section class="social-list-sec section-padding" style="">
+            <section style="padding-top: 0;" class="social-list-sec section-padding">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg col-6 col-md-3 wow fadeInUp" data-wow-duration=".5s">
                             <div class="single-social-list facebook">
                                 <i class="fa fa-facebook"></i>
                                 <h3 class="xs-title sm">Facebook</h3>
-                                <a href="#">
+                                <a target="_blank" href="https://web.facebook.com/TunezWallet/">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
@@ -939,7 +1011,7 @@
                             <div class="single-social-list twitter">
                                 <i class="fa fa-twitter"></i>
                                 <h3 class="xs-title sm">Twitter</h3>
-                                <a href="#">
+                                <a target="_blank" href="https://twitter.com/Tunez_wallet">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
@@ -948,34 +1020,35 @@
                             <div class="single-social-list github">
                                 <i class="fa fa-github-alt"></i>
                                 <h3 class="xs-title sm">Github</h3>
-                                <a href="#">
+                                <a target="_blank" href="https://github.com/TunezProject">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
                         </div><!-- single-social-list-->
-                        <!-- <div class="col-lg col-6 col-md-3 wow fadeInUp" data-wow-duration="2s">
+                        <div class="col-lg col-6 col-md-3 wow fadeInUp" data-wow-duration="2s">
                             <div class="single-social-list slack">
-                                <i class="fa fa-slack"></i>
-                                <h3 class="xs-title sm">Slack</h3>
-                                <a href="#">
+                                <i class="fa fa-instagram"></i>
+                                <h3 class="xs-title sm">Instagram</h3>
+                                <a target="_blank" href="https://instagram.com/tunezproject">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
-                        </div> -->
+                        </div><!-- single-social-list-->
                         <div class="col-lg col-6 col-md-3 wow fadeInUp" data-wow-duration="2.5s">
                             <div class="single-social-list bitcoin">
                                 <i class="fa fa-btc"></i>
-                                <h3 class="xs-title sm">BitTalk</h3>
-                                <a href="#">
+                                <h3 class="xs-title sm">BitcoinTalk</h3>
+                                <a target="_blank" href="https://bitcointalk.org/index.php?topic=5057536.0">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
-                        </div><!-- single-social-list-->
+                        </div>
+                        <!-- single-social-list-->
                         <div class="col-lg col-6 col-md-3 wow fadeInUp" data-wow-duration="3s">
                             <div class="single-social-list youtube">
                                 <i class="fa fa-youtube-play"></i>
                                 <h3 class="xs-title sm">Youtube</h3>
-                                <a href="#">
+                                <a target="_blank" href="https://www.youtube.com/channel/UCLVxEwLZj-JFYR_S2LvuviQ">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
@@ -984,7 +1057,7 @@
                             <div class="single-social-list telegram">
                                 <i class="fa fa-telegram"></i>
                                 <h3 class="xs-title sm">Telegram</h3>
-                                <a href="#">
+                                <a target="_blank" href="https://t.me/tunez_chat">
                                     <span class="icon icon-arrow-right"></span>
                                 </a>
                             </div>
@@ -1001,43 +1074,110 @@
             <div class="container">
                 <div class="footer-area">
                     <div class="row">
-                        <div class="col-lg-3 col-sm-6">
+                        <div class="col-lg-4 col-sm-6">
                             <div class="footer-widget">
-                                <div class="footer-logo">
+                                <div class="footer-logo"
+                                    style="display: flex; justify-content: center;">
                                     <a href="index.html">
-                                        <img width="200px" src="assets/images/logo.png" alt="">
+                                        <img width="200px" src="assets/images/logo.png" alt="tunez-logo">
                                     </a>
                                 </div>
                             </div>
                         </div><!-- col end -->
-                        <div class="col-lg-2 offset-lg-1 col-sm-6">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Company</h4>
-                                <ul>
-                                    <li><a href="#"> About us</a></li>
-                                    <li><a href="#"> Our Services</a></li>
-                                    <li><a href="#"> Timeline</a></li>
-                                    <li><a href="#"> On Media</a></li>
-                                </ul>
-                            </div>
-                        </div><!-- col end -->
-                        <div class="col-lg-2 col-sm-6">
-                            <div class="footer-widget support">
+                        <div class="col-lg-4 col-sm-6">
+                            <div class="footer-widget support text-center" style="margin-top:30px;">
                                 <h4 class="widget-title">Support</h4>
                                 <ul>
-                                    <li><a href="#"> Contact Us</a></li>
-                                    <li><a href="#"> FAQ</a></li>
-                                    <li><a href="#"> Support</a></li>
-                                    <li><a href="#"> Token</a></li>
+                                    <li><a data-toggle="modal" data-target="#support" href="#"> Contact Us</a></li>
+                                    <li><a data-toggle="modal" data-target="#faq" href="#"> FAQ</a></li>
                                 </ul>
                             </div>
                         </div><!-- col end -->
-                        <div class="col-lg-3 offset-lg-1 col-sm-6">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Contact</h4>
-                                <ul>
-                                    <li>Email: info@tunezwallet.com</li>
-                                </ul>
+                        <!-- Modal -->
+                        <div class="modal fade" id="faq" tabindex="-1" role="dialog" aria-labelledby="faq" aria-hidden="true">
+                            <div class="modal-dialog modal-full" role="document">
+                                <div class="modal-content bg-dark">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title">FAQ</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span class="text-white" aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body p-4">
+                                        <div class="row">
+                                            <div class="col-4">
+                                                <div class="list-group" id="list-tab" role="tablist">
+                                                <a class="list-group-item list-group-item-action active" id="list-buy-list" data-toggle="list" href="#list-buy" role="tab" aria-controls="buy">How do I buy Tunez tokens?</a>
+                                                <a class="list-group-item list-group-item-action" id="list-tunez-list" data-toggle="list" href="#list-tunez" role="tab" aria-controls="tunez">What is TUNEZ?</a>
+                                                <a class="list-group-item list-group-item-action" id="list-exchange-list" data-toggle="list" href="#list-exchange" role="tab" aria-controls="exchange">When would Tunez be listed on exchanges?</a>
+                                                <a class="list-group-item list-group-item-action" id="list-decentralized-list" data-toggle="list" href="#list-decentralized" role="tab" aria-controls="decentralized">Is the Tunez platfrom decentralized?</a>
+                                                <a class="list-group-item list-group-item-action" id="list-partnership-list" data-toggle="list" href="#list-partnership" role="tab" aria-controls="partnership">Are we going to be partnering with other projects?</a>
+                                                </div>
+                                            </div>
+                                            <div class="col-8">
+                                                <div class="tab-content"
+                                                     id="nav-tabContent">
+                                                <div class="tab-pane fade show active" id="list-buy" role="tabpanel" aria-labelledby="list-buy-list">You are to contribute to our contract address as displayed on our official website.</div>
+                                                <div class="tab-pane fade" id="list-tunez" role="tabpanel" aria-labelledby="list-tunez-list">The Tunez token (TUNEZ) is a ERC20 token based on the Ethereum blockchain.</div>
+                                                <div class="tab-pane fade" id="list-exchange" role="tabpanel" aria-labelledby="list-exchange-list">We would list on three exchanges immediately after ICO.</div>
+                                                <div class="tab-pane fade" id="list-decentralized" role="tabpanel" aria-labelledby="list-decentralized-list">Initially, the TUNEZ platform will not be completely decentralized and will only work partially on the Ethereum blockchain. In the second phase it will be totally decentralized.</div>
+                                                <div class="tab-pane fade" id="list-partnership" role="tabpanel" aria-labelledby="list-partnership-list">Yes of course we would be partnering. Post ICO we would build partnerships with artist and brands.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--faq end-->
+
+                        <!--support start-->
+                        <div class="modal fade" id="support" tabindex="-1" role="dialog" aria-labelledby="supportLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content bg-dark">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">New message</h5>
+                                        <button id="closeSupport" type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <form>
+                                        <div class="form-group">
+                                            <label for="sender-mail" class="col-form-label">From:</label>
+                                            <input type="email" class="form-control" id="sender-mail">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="message-text" class="col-form-label">Message:</label>
+                                            <textarea class="form-control" id="message-text"></textarea>
+                                        </div>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button id="sendSupport" type="button" class="btn btn-primary">Send message</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div><!--support end-->
+                        <div class="col-sm-6 col-lg-4" style="display: block; margin: auto;">
+                            <div class="footer-widget support" style="margin-top: 30px;">
+                                <h4 class="widget-title text-center">Exchange Target</h4>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <ul>
+                                            <li><img src="assets/images/footer/livecoin.jpg" alt="tunez-exchange-target-livecoin"></li>
+                                            <li><img src="assets/images/footer/coinhub.jpg" alt="tunez-exchange-target-coinhub"></li>
+                                            <li><img src="assets/images/footer/idex.jpg" alt="tunez-exchange-target-idex"></li>
+                                        </ul>
+                                    </div>
+                                    <div class="col-6">
+                                        <ul>
+                                            <li><img src="assets/images/footer/kucoin.jpg" alt="tunez-exchange-target-kucoin"></li>
+                                            <li><img src="assets/images/footer/mercatox.jpg" alt="tunez-exchange-target-mercatox"></li>
+                                            <li><img src="assets/images/footer/tokenjar.jpg" alt="tunez-exchange-target-tokenjar"></li>
+                                        </ul>
+                                    </div>
+                                </div>
                             </div>
                         </div><!-- col end -->
                     </div><!-- row end -->
@@ -1075,6 +1215,55 @@
     <script src="assets/js/particles.min.js"></script>
     <script src="assets/js/smooth-scroling.js"></script>
     <script src="assets/js/main.js"></script>
+    <script>
+        $('#sendSupport').click(() => {
+            let email = $('#sender-mail').val(),
+                message = $('#message-text').val()
+            if (email === '' || message === '') {
+                $('#alert').css('display', 'block');
+                // $('#sendSupport').html('sending...');
+                $('#alertbox').html('<strong>Please fill all fields!</strong>');
+                setTimeout(() => {
+                    $('#alert').css('display', 'none');
+                }, 2000);
+            } else if (!/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email)) {
+                $('#alert').css('display', 'block');
+                $('#alertbox').html('<strong>Please input a valid email address!</strong>');
+                setTimeout(() => {
+                    $('#alert').css('display', 'none');
+                }, 2000);
+              } else {
+                $('#sendSupport').html('sending...');
+                $.ajax({
+                    type: 'POST',
+                    url: 'contact.php',
+                    data: {
+                        email: email,
+                        message: message
+                    },
+                    success: function(response) {
+                        $('#sendSupport').html('send message');
+                        if (/Success/.test(response)) {
+                            $('#sender-mail').val('');
+                            $('#message-text').val('');
+                            $('#closeSupport').trigger('click');
+                            $('#alert').css('display', 'block');
+                            $('#alertbox').html(`<strong>${response}</strong>`);
+                            setTimeout(() => {
+                                $('#alert').css('display', 'none');
+                            }, 2000);
+                        } else if (/not/.test(response)){
+                            $('#alert').css('display', 'block');
+                            $('#alertbox').html(`<strong>${response}</strong>`);
+                            setTimeout(() => {
+                                $('#alert').css('display', 'none');
+                            }, 2000);
+                        }
+                    }
+                })
+            }
+        });
+    </script>
 
 </body>
 

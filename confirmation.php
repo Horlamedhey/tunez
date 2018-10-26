@@ -9,35 +9,35 @@ DB::$password = 'admin@tunezwallet.io';
 DB::$dbName = 'users';
 
 $email = $_GET['email'];
-$code = DB::queryFirstRow("SELECT ownReferralCode FROM usersTable WHERE email=%s", $email);
+$getcode = DB::queryFirstRow("SELECT ownReferralCode FROM usersTable WHERE email=%s", $email);
+$code = $getcode['ownReferralCode'];
 $mail = new PHPMailer();
 $mail->IsSMTP();                                      // set mailer to use SMTP
-$mail->SMTPDebug = 2;
 $mail->Host = "tunezwallet.com";  // specify main and backup server
-$mail->Port = 465;
 $mail->SMTPAuth = true;     // turn on SMTP authentication
 $mail->Username = "info@tunezwallet.com";  // SMTP username
 $mail->Password = "admin@tunezwallet.io"; // SMTP password
 
-$mail->setFrom("info@tunezwallet.com", "TunezWallet");
-// $mail->FromName = ;
+$mail->From = "info@tunezwallet.com";
+$mail->FromName = "TunezWallet";
 $mail->AddAddress($email);
 
 $mail->WordWrap = 50;                                 // set word wrap to 50 characters
 $mail->IsHTML(true);                                  // set email format to HTML
 
 $mail->Subject = 'Account Activation';
-$mail->Body = 'Please Click On This link <a href="https://www.tunezwallet.com/verification.php">Verify.php?email=' . $email . '&code=' . $code['ownReferralCode'] . '</a>to activate your account.';
-$mail->AltBody = 'Please Click On This link <a href="https://www.tunezwallet.com/verification.php">Verify.php?email=' . $email . '&code=' . $code['ownReferralCode'] . '</a>to activate your account.';
+$mail->Body = '
+<html>
+  <body>
+    <p>Please click on the link below to activate your account.</p>
+    <p>
+      <a href="https://www.tunezwallet.com/verification.php?email=' . $email . '&code=' . $code . '">Activation Link</a>
+    </p>
+  </body>
+</html>';
+$mail->AltBody = 'Please Click On This link <a href=" https ://www.tunezwallet.com/verification.php?email=' . $email . '&code=' . $code . '">Activation link</a> to activate your account.';
 
-if (!$mail->Send()) {
-  echo "Message could not be sent. 
-  ";
-  echo "Mailer Error: " . $mail->ErrorInfo;
-  exit;
-}
-
-echo "Message Successfully Sent";
+$mail->Send();
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,7 +49,7 @@ echo "Message Successfully Sent";
   <link rel="apple-touch-icon" href="assets/images/logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
-    TunezWallet-Dashboard
+    TunezWallet-Verification
   </title>
   <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
     <link rel="icon" type="image/png" href="assets/images/logo.png">
@@ -70,13 +70,13 @@ echo "Message Successfully Sent";
 </head>
 
 <body class="dark-edition">
-  <!--<div class="preloader" id="preloader">
+  <div class="preloader" id="preloader">
     <svg class="xs-preload" viewBox="0 0 120 120" width="120px" height="120px">
       <circle class="inner" cx="60" cy="60" r="32" />
       <circle class="middle" cx="60" cy="60" r="38" />
       <circle class="outer" cx="60" cy="60" r="44" />
     </svg>
-  </div>-->
+  </div>
   <div class="wrapper ">
     <div class="main-panel" style="float: left; width: 100%;">
     <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top" id="navigation-example">
@@ -108,6 +108,11 @@ echo "Message Successfully Sent";
   </div><!-- container end -->
   </footer>
   <script src="assets/js/jquery-3.2.1.min.js"></script>
+  <script>
+    $(window).on('load', function () {
+        $('#preloader').addClass('loaded');
+    });
+  </script>
   <script src="assets/js/dashboard.js"></script>
 </body>
 
